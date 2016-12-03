@@ -1,0 +1,180 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct node
+{
+	char usn[3],name[10],branch[4],sem[3],phone[10];
+	struct node *link;
+};
+struct node *head=NULL;
+struct node *createnode()
+{
+	struct node *temp;
+	temp=malloc(sizeof(struct node));
+	printf("enter the usn\n");
+	fflush(stdin);
+	scanf("%s",temp->usn);
+	printf("enter the name\n");
+	scanf("%s",temp->name);
+	printf("enter the branch\n");
+	scanf("%s",temp->branch);
+	printf("enter the sem\n");
+	scanf("%s",temp->sem);
+	printf("enter the phone number\n");
+	scanf("%s",temp->phone);
+	temp->link=NULL;
+	return temp;
+}
+void insertfront()
+{
+	struct node *SLL=NULL;
+	SLL=createnode();
+	if(head!=NULL)
+		SLL->link=head;
+	head=SLL;
+}
+void delfront()
+{
+	struct node *SLL=head;
+	printf("the deleted node is:\n");
+	printf("usn=%s\n",SLL->usn);
+	printf("name=%s\n",SLL->name);
+	printf("sem=%s\n",SLL->sem);
+	printf("branch=%s\n",SLL->branch);
+	printf("phone=%s\n",SLL->phone);
+	head=SLL->link;
+	free(SLL);
+}
+void insertend()
+{
+	struct node *SLL,*temp=head;
+	SLL=createnode();
+	if(head==NULL)
+		head=SLL;
+	else
+	{
+		while(temp->link!=NULL)
+			temp=temp->link;
+			temp->link=SLL;
+	}
+}
+void deleteend()
+{
+	struct node *temp=head;
+	struct node *t;
+	if(head==NULL)
+		printf("link list is empty\n");
+	else
+	{
+		while(temp->link!=NULL)
+		{
+			t=temp;
+			temp=temp->link;
+		}
+	printf("the deleted node is:\n");
+	printf("usn=%s",temp->usn);
+	printf("name=%s",temp->name);
+	printf("sem=%s",temp->sem);
+	printf("Sem=%s",temp->branch);
+	printf("phone=%s",temp->phone);
+	free(t->link);
+	t->link=NULL;
+	}
+}
+void create()
+{
+	int n,i;
+	printf("enter the number of students\n");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		insertfront();
+	}
+}
+void display()
+{
+	int c=0;
+	struct node *temp=head;
+	while(temp!=NULL)
+	{
+		fflush(stdout);
+		printf("\n%s\t",temp->usn);
+		printf("\n%s\t",temp->name);
+		printf("\n%s\t",temp->branch);
+		printf("\n%s\t",temp->sem);
+		printf("\n%s\t",temp->phone);
+		temp=temp->link;
+		c=c+1;
+	}
+	printf("\nthe number of nodes=%d\n",c);
+}
+void stack()
+{
+	int choice;
+	printf("enter your choice\n1.push\n2.pop\n3.display\n");
+	scanf("%d",&choice);
+	switch(choice)
+	{
+		case 1:printf("enter the details to be pushed on the stack\n");
+			insertfront();
+			break;
+		case 2:printf("the poped node is:\n");
+			delfront();
+			break;
+		case 3:printf("the stack is:\n");
+			display();
+	}
+}
+void queue()
+{
+	int choice;
+	printf("enter your choice\n1.insert\n2.delete\n3.display\n");
+	scanf("%d",&choice);
+	switch(choice)
+	{
+		case 1:printf("enter the details to be inserted on the queue\n");
+			insertend();
+			break;
+		case 2:printf("the deleted node is:\n");
+			delfront();
+			break;
+		case 3:printf("the queue is:\n");
+			display();
+	}
+}
+void main()
+{
+	int ch1,ch2,ch3;
+	while(1)
+	{
+		printf("enter your choice\n1.create\n2.display and count\n3.insert and delete at end\n4.insert and delete from front\n5.SLL as stack\n6.SLL as queue\n7.exit\n");
+		scanf("%d",&ch1);
+		switch(ch1)
+		{
+			case 1:create();
+				break;
+			case 2:display();
+				break;
+			case 3:printf("enter your choice\n1.insert\n2.delete\n");
+				scanf("%d",&ch2);
+				if(ch2==1)
+					insertend();
+				else
+					deleteend();
+				break;
+			case 4:printf("enter your choice\n1.insert\n2.delete\n");
+				scanf("%d",&ch3);
+				if(ch3==1)
+					insertfront();
+				else
+					delfront();
+				break;
+			case 5:stack();
+				break;
+			case 6:queue();
+				break;
+			case 7:exit(0);
+		}
+	}
+}
+
