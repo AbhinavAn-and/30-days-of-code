@@ -1,0 +1,50 @@
+ 
+Java 8
+
+ 
+1
+import java.util.*;
+2
+import java.math.*;
+3
+​
+4
+public class Arithmetic {
+5
+​
+6
+    public static void main(String[] args) {
+7
+        Scanner scan = new Scanner(System.in);
+8
+        double mealCost = scan.nextDouble(); // original meal price
+9
+        int tipPercent = scan.nextInt(); // tip percentage
+10
+        int taxPercent = scan.nextInt(); // tax percentage
+11
+        scan.close();
+12
+      
+13
+        // Write your calculation code here.
+14
+      double tip=(mealCost*(tipPercent/100.0));
+15
+       double tax=(mealCost*(taxPercent/100.0));
+16
+        double totalcost=(mealCost+tip+tax);
+17
+        // cast the result of the rounding operation to an int and save it as totalCost 
+18
+        int totalCost = (int) Math.round(totalcost/*numberToRoundHere*/);
+19
+      
+20
+        System.out.println("The total meal cost is "+totalCost+" dollars.");
+21
+        // Print your result
+22
+    }
+23
+}
