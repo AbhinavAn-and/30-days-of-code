@@ -1,0 +1,17 @@
+private int absDifference;
+    Difference(int[] mElementsArray){
+        this.elements = mElementsArray;
+    }
+
+    void computeDifference(){
+        maximumDifference = Math.abs(elements[0]-elements[1]);
+        // System.out.println(maximumDifference);
+        for(int i=0; i<elements.length-1; i++){
+            for(int j=i+1; j<elements.length; j++){
+                absDifference = Math.abs(elements[i]-elements[j]);
+                if(absDifference > maximumDifference){
+                    maximumDifference = absDifference;
+                }
+            }
+        }
+    }
